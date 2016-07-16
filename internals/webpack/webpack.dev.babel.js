@@ -12,6 +12,7 @@ const pkg = require(path.resolve(process.cwd(), 'package.json'));
 const dllPlugin = pkg.dllPlugin;
 
 // PostCSS plugins
+const cssFontAwesome = require('postcss-font-awesome');
 const cssnext = require('postcss-cssnext');
 const postcssFocus = require('postcss-focus');
 const postcssReporter = require('postcss-reporter');
@@ -29,7 +30,7 @@ module.exports = require('./webpack.base.babel')({
   // Add hot reloading in development
   entry: [
     'eventsource-polyfill', // Necessary for hot reloading with IE
-    'webpack-hot-middleware/client',
+    'webpack-hot-middleware',
     path.join(process.cwd(), 'app/app.js'), // Start with js/app.js
   ],
 
@@ -47,6 +48,7 @@ module.exports = require('./webpack.base.babel')({
 
   // Process the CSS with PostCSS
   postcssPlugins: [
+    cssFontAwesome({ replacement: true }), // Adding FontAwesome capabilities like -> .foo { font-awesome: camera; }
     postcssFocus(), // Add a :focus to every :hover
     cssnext({ // Allow future CSS features to be used, also auto-prefixes the CSS...
       browsers: ['last 2 versions', 'IE > 10'], // ...based on this browser list

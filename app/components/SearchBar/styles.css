@@ -1,0 +1,10 @@
+.searchBar {
+  display: flex;
+  align-self: stretch;
+  width: 100%
+}
+.searchInput {
+  outline: none;
+  text-align: center;
+  width: 100%
+}

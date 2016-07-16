@@ -6,7 +6,7 @@
 import { combineReducers } from 'redux-immutable';
 import { fromJS } from 'immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
-
+import loginReducer from './utils/auth/reducer';
 /*
  * routeReducer
  *
@@ -38,9 +38,11 @@ function routeReducer(state = routeInitialState, action) {
 /**
  * Creates the main reducer with the asynchronously loaded ones
  */
+
 export default function createReducer(asyncReducers) {
   return combineReducers({
     route: routeReducer,
+    login: loginReducer,
     ...asyncReducers,
   });
 }
