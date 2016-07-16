@@ -10,12 +10,19 @@
  */
 
 import React from 'react';
-
+import { firebaseDb } from '../../utils/firebase';
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
-
+  componentDidMount() {
+    firebaseDb.ref('/coworks').once('value').then((snapshot) => {
+      console.log(snapshot.val());
+    })
+    .catch((data) => {
+      console.error(data);
+    });
+  }
   render() {
     return (
-      <h1>This is the Homepage!</h1>
+      <h1>Coworks</h1>
     );
   }
 }
