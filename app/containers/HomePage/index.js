@@ -10,19 +10,31 @@
  */
 
 import React from 'react';
+import TopBar from '../../components/TopBar';
+import BottomArea from '../../components/BottomArea';
 import { firebaseDb } from '../../utils/firebase';
+
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   componentDidMount() {
-    firebaseDb.ref('/coworks').once('value').then((snapshot) => {
-      console.log(snapshot.val());
-    })
-    .catch((data) => {
-      console.error(data);
-    });
+    firebaseDb
+      .ref('/coworks')
+      .once('value')
+      .then((snapshot) => {
+        const coworks = snapshot.val();
+        Object.keys(coworks).forEach((el) => {
+          console.log(coworks[el]);
+        });
+      })
+      .catch((data) => {
+        console.error(data);
+      });
   }
   render() {
     return (
-      <h1>Coworks</h1>
+      <div>
+        <TopBar />
+        <BottomArea />
+      </div>
     );
   }
 }
