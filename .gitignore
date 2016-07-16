@@ -10,5 +10,6 @@ npm-debug.log
 .idea
 
 # Config
+config.js
 .config.js
 .config*.*
