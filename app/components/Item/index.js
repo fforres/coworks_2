@@ -15,7 +15,6 @@ class Item extends React.Component { // eslint-disable-line react/prefer-statele
   render() {
     const { nombre, descripcion, direccion } = this.props.cowork;
     const { calle, numero, ciudad, pais } = direccion;
-    console.log(this.props.cowork);
     return (
       <div className={styles.item}>
         <a
@@ -44,15 +43,15 @@ class Item extends React.Component { // eslint-disable-line react/prefer-statele
 Item.propTypes = {
   cowork: PropTypes.shape({
     nombre: PropTypes.string.isRequired,
-    descripcion: PropTypes.string.shape({
+    descripcion: PropTypes.shape({
       corta: PropTypes.string.isRequired,
-    }),
-    direccion: PropTypes.string.shape({
+    }).isRequired,
+    direccion: PropTypes.shape({
       calle: PropTypes.string.isRequired,
       numero: PropTypes.string.isRequired,
       ciudad: PropTypes.string.isRequired,
       pais: PropTypes.string.isRequired,
-    }),
+    }).isRequired,
   }),
 };
 export default Item;

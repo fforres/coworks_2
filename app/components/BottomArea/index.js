@@ -18,6 +18,7 @@ class BottomArea extends React.Component { // eslint-disable-line react/prefer-s
         <LeftMenu />
         <ItemsList
           coworksList={this.props.coworksList}
+          loading={this.props.loading}
         />
         <Welcome />
       </div>
@@ -27,6 +28,7 @@ class BottomArea extends React.Component { // eslint-disable-line react/prefer-s
 
 BottomArea.propTypes = {
   coworksList: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default BottomArea;
