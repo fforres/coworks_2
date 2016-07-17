@@ -4,7 +4,7 @@
 *
 */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import LeftMenu from '../LeftMenu';
 import ItemsList from '../ItemsList';
 import Welcome from '../Welcome';
@@ -16,11 +16,17 @@ class BottomArea extends React.Component { // eslint-disable-line react/prefer-s
     return (
       <div className={styles.bottomArea}>
         <LeftMenu />
-        <ItemsList />
+        <ItemsList
+          coworksList={this.props.coworksList}
+        />
         <Welcome />
       </div>
     );
   }
 }
+
+BottomArea.propTypes = {
+  coworksList: PropTypes.array.isRequired,
+};
 
 export default BottomArea;
