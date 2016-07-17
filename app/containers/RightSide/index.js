@@ -11,16 +11,28 @@ import { createStructuredSelector } from 'reselect';
 import { getCoworkByKey } from './actions';
 import styles from './styles.css';
 import Welcome from 'components/Welcome';
+import Spinner from 'components/Spinner';
+import Description from 'components/Description';
 
 export class RightSide extends React.Component { // eslint-disable-line react/prefer-stateless-function
   componentDidMount() {
-    console.log(this.props)
-    console.log(this.props.getCoworkByKey);
+    // TODO: Change 'nombre' key, to find by county, or other parameter.
+    this.props.getCoworkByKey('nombre', this.props.routeParams.cowork_name);
+  }
+  componentWillReceiveProps(nextProps) {
+    if (this.props.routeParams.cowork_name !== nextProps.routeParams.cowork_name) {
+      // TODO: Change 'nombre' key, to find by county, or other parameter.
+      this.props.getCoworkByKey('nombre', nextProps.routeParams.cowork_name);
+    }
   }
   render() {
     let toShow = <Welcome />;
-    if (this.props.currentCowork) {
-      toShow = (<h1>:o</h1>);
+    if (this.props.rightSideState.loading) {
+      toShow = <Spinner />;
+    } else {
+      if (this.props.currentCowork) {
+        toShow = <Description {...this.props.currentCowork} />;
+      }
     }
     return (
       <div className={styles.rightSide}>

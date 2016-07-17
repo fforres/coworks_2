@@ -1,33 +1,37 @@
 import { take, call, put, select } from 'redux-saga/effects';
+import { takeEvery, takeLatest } from 'redux-saga';
 import { GET_COWORK_BY_KEY } from './constants';
 import { coworkLoaded, coworkLoadingError } from './actions';
 import { firebaseDb } from 'utils/firebase';
 
 
-export function* getCoworkByKey(key, val) {
-  const coworkByKey = yield call(() => firebaseDb
-      .ref('/coworks')
-      .orderByChild('nombre')
-      .equalTo('Centro Corfo')
-      .once('value')
-      .then((snapshot) => snapshot.val())
-      .catch((data) => ({ error: data }))
-  );
-  console.log(key);
-  console.log(val);
-  console.log(coworkByKey);
-  debugger;
-  if (coworkByKey.error) {
-    yield put(coworkLoadingError(coworkByKey.error));
+export function* getCoworkByKey({ key, value }) {
+  if (!value) {
+    yield put(coworkLoadingError(true));
   } else {
-    yield put(coworkLoaded(coworkByKey));
+    const coworkByKey = yield call(() => firebaseDb
+        .ref('/coworks')
+        .orderByChild(key)
+        .equalTo(value)
+        .once('value')
+        .then((snapshot) => {
+          if (Object.keys(snapshot.val()) < 1) {
+            return { error: `No Data for key: ${key} and value: ${value}` };
+          }
+          return snapshot.val()[Object.keys(snapshot.val())[0]];
+        })
+        .catch((data) => ({ error: data }))
+    );
+    if (coworkByKey.error) {
+      yield put(coworkLoadingError(coworkByKey.error));
+    } else {
+      yield put(coworkLoaded(coworkByKey));
+    }
   }
 }
 
 export function* findCoworkByNameWatcher() {
-  while (yield take(GET_COWORK_BY_KEY)) {
-    yield call(getCoworkByKey);
-  }
+  yield takeLatest(GET_COWORK_BY_KEY, getCoworkByKey);
 }
 
 // All sagas to be loaded
