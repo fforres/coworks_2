@@ -12,7 +12,7 @@ class LeftMenu extends React.Component { // eslint-disable-line react/prefer-sta
   render() {
     return (
       <div className={styles.leftMenu}>
-      left
+        left
       </div>
     );
   }

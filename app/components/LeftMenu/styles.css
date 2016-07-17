@@ -1,3 +1,4 @@
 .leftMenu {
-
+  min-width: 8.5rem;
+  display: flex;
 }
