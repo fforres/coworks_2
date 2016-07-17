@@ -1,3 +1,35 @@
 .item {
+  border-top-color: rgb(0, 0, 0);
+  border-top-color: rgba(0, 0, 0, 0.1);
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-left-color: rgb(0, 0, 0);
+  border-left-color: rgba(0, 0, 0, 0.1);
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-right-color: rgb(0, 0, 0);
+  border-right-color: rgba(0, 0, 0, 0.1);
+  border-right-width: 1px;
+  border-right-style: solid;
+}
+.item:first-of-type {
+  border-top: none;
+}
+.link {
+  text-decoration: none;
+  padding: 0.6em;
+  display: flex;
+  flex-direction: column;
+  color: rgb(0,0,0);
+}
 
+.title {
+
+}
+.subTitle {
+
+}
+
+.address {
+  text-transform: capitalize;
 }

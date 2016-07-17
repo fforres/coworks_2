@@ -4,7 +4,7 @@
 *
 */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import styles from './styles.css';
 
@@ -22,7 +22,7 @@ class SearchBar extends React.Component { // eslint-disable-line react/prefer-st
     this.setState({ searchString });
   }
   submitSearch() {
-    alert(this.state.searchString);
+    this.props.getCoworks();
   }
   removePlaceHolder() {
     this.setState({ placeholder: '' });
@@ -50,5 +50,9 @@ class SearchBar extends React.Component { // eslint-disable-line react/prefer-st
     );
   }
 }
+
+SearchBar.propTypes = {
+  getCoworks: PropTypes.func.isRequired,
+};
 
 export default SearchBar;
