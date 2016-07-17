@@ -16,7 +16,7 @@ export default function createRoutes(store) {
   // Create reusable async injectors using getAsyncInjectors factory
   const {
     injectReducer,
-    injectSagas
+    injectSagas,
   } = getAsyncInjectors(store);
 
   return [
@@ -26,15 +26,43 @@ export default function createRoutes(store) {
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           System.import('containers/Home/reducer'),
+          System.import('containers/RightSide/reducer'),
           System.import('containers/Home/sagas'),
+          System.import('containers/RightSide/sagas'),
           System.import('containers/Home'),
         ]);
 
         const renderRoute = loadModule(cb);
 
-        importModules.then(([reducer, sagas, component]) => {
-          injectReducer('coworks', reducer.default);
-          injectSagas(sagas.default);
+        importModules.then(([reducerHome, reducerRightSide, sagasHome, sagasRightSide, component]) => {
+          injectReducer('coworks', reducerHome.default);
+          injectReducer('currentCowork', reducerRightSide.default);
+          injectSagas(sagasHome.default);
+          injectSagas(sagasRightSide.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
+      path: '/search/:cowork_name',
+      name: 'home',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/Home/reducer'),
+          System.import('containers/RightSide/reducer'),
+          System.import('containers/Home/sagas'),
+          System.import('containers/RightSide/sagas'),
+          System.import('containers/Home'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducerHome, reducerRightSide, sagasHome, sagasRightSide, component]) => {
+          injectReducer('coworks', reducerHome.default);
+          injectReducer('currentCowork', reducerRightSide.default);
+          injectSagas(sagasHome.default);
+          injectSagas(sagasRightSide.default);
           renderRoute(component);
         });
 
@@ -58,6 +86,7 @@ export default function createRoutes(store) {
       },
     }, {
       path: '*',
+
       name: 'notfound',
       getComponent(nextState, cb) {
         System.import('containers/NotFoundPage')

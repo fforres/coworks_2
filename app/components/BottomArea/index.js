@@ -7,11 +7,12 @@
 import React, { PropTypes } from 'react';
 import LeftMenu from '../LeftMenu';
 import ItemsList from '../ItemsList';
-import Welcome from '../Welcome';
+import RightSide from 'containers/RightSide';
 
 import styles from './styles.css';
 
 class BottomArea extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  // routeParams={this.props.routeParams}
   render() {
     return (
       <div className={styles.bottomArea}>
@@ -20,15 +21,19 @@ class BottomArea extends React.Component { // eslint-disable-line react/prefer-s
           coworksList={this.props.coworksList}
           loading={this.props.loading}
         />
-        <Welcome />
+        <RightSide
+          routeParams={this.props.routeParams}
+        />
       </div>
     );
   }
 }
 
+
 BottomArea.propTypes = {
   coworksList: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
+  routeParams: PropTypes.object.isRequired,
 };
 
 export default BottomArea;

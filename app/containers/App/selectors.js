@@ -5,12 +5,6 @@
 import { createSelector } from 'reselect';
 const selectGlobal = () => (state) => state.get('global');
 
-const selectCoworks = () => createSelector(
-  selectGlobal(),
-  (globalState) => {
-    return globalState.get('coworks')
-  }
-);
 
 // selectLocationState expects a plain JS object for the routing state
 const selectLocationState = () => {
@@ -32,6 +26,5 @@ const selectLocationState = () => {
 
 export {
   selectGlobal,
-  selectCoworks,
   selectLocationState,
 };

@@ -8,13 +8,7 @@ const selectCoworksDomain = () => state => state.get('coworks');
 /**
  * Other specific selectors
  */
-
-
-/**
- * Default selector used by Home
- */
-
-const selectCoworks = () => createSelector(
+const selectCoworksList = () => createSelector(
   selectCoworksDomain(),
   (substate) => substate.get('coworksArr')
 );
@@ -29,10 +23,19 @@ const selectError = () => createSelector(
   (substate) => substate.get('error')
 );
 
+/**
+ * Default selector used by Home
+ */
+const selectCoworks = () => createSelector(
+ selectCoworksDomain(),
+ (substate) => substate.toJS()
+);
+
 export default selectCoworksDomain;
 export {
   selectCoworksDomain,
   selectCoworks,
+  selectCoworksList,
   selectLoading,
   selectError,
 };
