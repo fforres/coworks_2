@@ -31,7 +31,7 @@ class BottomArea extends React.Component { // eslint-disable-line react/prefer-s
 
 
 BottomArea.propTypes = {
-  coworksList: PropTypes.array.isRequired,
+  coworksList: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
   loading: PropTypes.bool.isRequired,
   routeParams: PropTypes.object.isRequired,
 };

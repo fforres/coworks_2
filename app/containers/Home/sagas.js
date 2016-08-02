@@ -29,6 +29,9 @@ export function* getCoworksWatcher() {
   while (yield take(GET_COWORKS)) {
     yield call(getCoworks);
   }
+  // yield take(LOCATION_CHANGE);
+  // yield cancel(watcher1);
+  // yield cancel(watcher2);
 }
 
 // All sagas to be loaded

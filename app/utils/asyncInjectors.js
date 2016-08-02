@@ -1,5 +1,4 @@
 import createReducer from 'reducers.js';
-
 /**
  * Inject an asynchronously loaded reducer
  */

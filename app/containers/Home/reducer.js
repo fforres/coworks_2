@@ -22,9 +22,7 @@ import {
   GET_COWORKS_SUCCESS,
   GET_COWORKS_ERROR,
 } from './constants';
-
 const initialState = fromJS({
-  coworks: {},
   coworksArr: [],
   loading: false,
   error: false,
@@ -40,7 +38,6 @@ function coworksReducer(state = initialState, action) {
       return state
         .set('loading', false)
         .set('error', false)
-        .set('coworks', action.coworks)
         .set('coworksArr', action.coworksArr);
     case GET_COWORKS_ERROR:
       return state

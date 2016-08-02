@@ -9,6 +9,8 @@ import {
   GET_COWORK_BY_KEY,
   GET_COWORK_BY_KEY_SUCCESS,
   GET_COWORK_BY_KEY_ERROR,
+  SET_FILTER,
+  CLEAR_FILTER,
 } from './constants';
 
 const initialState = fromJS({
@@ -16,6 +18,10 @@ const initialState = fromJS({
   error: false,
   welcome: true,
   cowork: false,
+  filter: {
+    key: false,
+    value: false,
+  },
 });
 
 function rightSideReducer(state = initialState, action) {
@@ -40,6 +46,12 @@ function rightSideReducer(state = initialState, action) {
         .set('welcome', false)
         .set('cowork', false)
         ;
+    case SET_FILTER:
+      return state
+        .set('filter', { key: action.key, value: action.value });
+    case CLEAR_FILTER:
+      return state
+        .set('filter', initialState.filter);
     default:
       return state;
   }

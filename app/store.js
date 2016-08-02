@@ -3,21 +3,23 @@
  */
 
 import { createStore, applyMiddleware, compose } from 'redux';
-import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
+import configureStorage, { updateStateOnStorageLoad } from './configureStorage';
 
+const { storageMiddleware, loader } = configureStorage();
 const sagaMiddleware = createSagaMiddleware();
 const devtools = window.devToolsExtension || (() => noop => noop);
 
-export default function configureStore(initialState = {}, history) {
+export default function configureStore(initialState = {}, history, cb) {
   // Create the store with two middlewares
   // 1. sagaMiddleware: Makes redux-sagas work
   // 2. routerMiddleware: Syncs the location/URL path to the state
   const middlewares = [
     sagaMiddleware,
     routerMiddleware(history),
+    storageMiddleware,
   ];
 
   const enhancers = [
@@ -25,9 +27,10 @@ export default function configureStore(initialState = {}, history) {
     devtools(),
   ];
 
+  const reducer = createReducer();
   const store = createStore(
-    createReducer(),
-    fromJS(initialState),
+    updateStateOnStorageLoad(reducer),
+    initialState,
     compose(...enhancers)
   );
 
@@ -39,13 +42,13 @@ export default function configureStore(initialState = {}, history) {
   if (module.hot) {
     System.import('./reducers').then((reducerModule) => {
       const createReducers = reducerModule.default;
-      const nextReducers = createReducers(store.asyncReducers);
-
+      const nextReducers = updateStateOnStorageLoad(createReducers(store.asyncReducers));
       store.replaceReducer(nextReducers);
     });
   }
 
-  // Initialize it with no other reducers
   store.asyncReducers = {};
-  return store;
+  loader(store).then(() => {
+    cb(store);
+  }).catch(console.error);
 }

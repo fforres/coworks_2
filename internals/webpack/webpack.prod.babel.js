@@ -6,6 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OfflinePlugin = require('offline-plugin');
 
 // PostCSS plugins
+const cssFontAwesome = require('postcss-font-awesome');
 const cssnext = require('postcss-cssnext');
 const postcssFocus = require('postcss-focus');
 const postcssReporter = require('postcss-reporter');
@@ -38,6 +39,7 @@ module.exports = require('./webpack.base.babel')({
     postcssReporter({
       clearMessages: true,
     }),
+    cssFontAwesome({ replacement: true }),
   ],
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({

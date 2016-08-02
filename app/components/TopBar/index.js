@@ -11,17 +11,15 @@ import styles from './styles.css';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
+import Menu from 'components/Menu';
+
 class TopBar extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div className={styles.topBar}>
         <span>Coworks</span>
         <SearchBar getCoworks={this.props.getCoworks} />
-        <span
-          onClick={() => {
-            this.props.changeRoute('/login');
-          }}
-        > Menu </span>
+        <Menu />
       </div>
     );
   }

@@ -14,6 +14,11 @@ const selectCurrentCowork = () => createSelector(
   (currentCoworkState) => currentCoworkState.get('cowork'),
 );
 
+const selectCurrentFilters = () => createSelector(
+  selectRightSideDomain(),
+  (currentCoworkState) => currentCoworkState.get('filter'),
+);
+
 
 /**
  * Default selector used by RightSide
@@ -29,4 +34,5 @@ export {
   selectRightSide,
   selectRightSideDomain,
   selectCurrentCowork,
+  selectCurrentFilters,
 };

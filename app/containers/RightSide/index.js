@@ -6,9 +6,9 @@
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { selectRightSide, selectCurrentCowork } from './selectors';
+import { selectRightSide, selectCurrentCowork, selectCurrentFilters } from './selectors';
 import { createStructuredSelector } from 'reselect';
-import { getCoworkByKey } from './actions';
+import { getCoworkByKey, setFilter } from './actions';
 import styles from './styles.css';
 import Welcome from 'components/Welcome';
 import Spinner from 'components/Spinner';
@@ -16,14 +16,40 @@ import Description from 'components/Description';
 
 export class RightSide extends React.Component { // eslint-disable-line react/prefer-stateless-function
   componentDidMount() {
-    // TODO: Change 'nombre' key, to find by county, or other parameter.
-    this.props.getCoworkByKey('nombre', this.props.routeParams.cowork_name);
-  }
-  componentWillReceiveProps(nextProps) {
-    if (this.props.routeParams.cowork_name !== nextProps.routeParams.cowork_name) {
-      // TODO: Change 'nombre' key, to find by county, or other parameter.
-      this.props.getCoworkByKey('nombre', nextProps.routeParams.cowork_name);
+    if (this.props.routeParams.cowork_name) {
+      this.reloadCoworkInfo('nombre', this.props.routeParams.cowork_name);
     }
+  }
+  componentWillUpdate(nextProps) {
+    if (
+        this.props.routeParams.cowork_name &&
+        this.props.filters.value &&
+        this.props.filters.value.toLowerCase() !== nextProps.routeParams.cowork_name.toLowerCase()
+    ) {
+      this.reloadCoworkInfo('nombre', nextProps.routeParams.cowork_name);
+    }
+  }
+  reloadCoworkInfo(key, value) {
+    // TODO: Change 'nombre' key, to find by county, or other parameter.
+    this.props.setCoworkFilters(key, value);
+    this.props.getCowork();
+
+    // TODO: Change 'nombre' key, to find by county, or other parameter.
+    // if (!nextProps) {
+    //   if (this.props.routeParams.cowork_name) {
+    //     this.props.setCoworkFilters('nombre', this.props.routeParams.cowork_name);
+    //     this.props.getCowork();
+    //   }
+    // } else {
+    //   if (
+    //       this.props.routeParams.cowork_name &&
+    //       nextProps.routeParams.cowork_name &&
+    //       this.props.routeParams.cowork_name.toLowerCase() !== nextProps.routeParams.cowork_name.toLowerCase()
+    //    ) {
+    //     this.props.setCoworkFilters('nombre', this.props.routeParams.cowork_name);
+    //     this.props.getCowork();
+    //   }
+    // }
   }
   render() {
     let toShow = <Welcome />;
@@ -48,19 +74,28 @@ RightSide.propTypes = {
     PropTypes.bool,
     PropTypes.object,
   ]).isRequired,
-  getCoworkByKey: PropTypes.func.isRequired,
+  getCowork: PropTypes.func.isRequired,
   routeParams: PropTypes.object.isRequired,
+  setCoworkFilters: PropTypes.func.isRequired,
+  filters: PropTypes.shape({
+    key: PropTypes.oneOfType([PropTypes.bool.isRequired, PropTypes.string.isRequired]),
+    value: PropTypes.oneOfType([PropTypes.bool.isRequired, PropTypes.string.isRequired]),
+  }).isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   rightSideState: selectRightSide(),
+  filters: selectCurrentFilters(),
   currentCowork: selectCurrentCowork(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    getCoworkByKey: (key, value) => {
+    getCowork: (key, value) => {
       dispatch(getCoworkByKey(key, value));
+    },
+    setCoworkFilters: (key, value) => {
+      dispatch(setFilter(key, value));
     },
     dispatch,
   };

@@ -7,7 +7,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-import { selectCoworksList, selectLoading } from './selectors';
+import { selectLoading, selectCoworksArr } from './selectors';
 import styles from './styles.css';
 import { push } from 'react-router-redux';
 
@@ -32,7 +32,7 @@ export class Home extends React.Component { // eslint-disable-line react/prefer-
         />
         <TopBar getCoworks={this.props.getCoworks} />
         <BottomArea
-          coworksList={this.props.coworks}
+          coworksList={this.props.coworksList}
           loading={this.props.loading}
           routeParams={this.props.routeParams}
         />
@@ -43,13 +43,13 @@ export class Home extends React.Component { // eslint-disable-line react/prefer-
 
 Home.propTypes = {
   getCoworks: PropTypes.func.isRequired,
-  coworks: PropTypes.array.isRequired,
+  coworksList: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
   loading: PropTypes.bool.isRequired,
   routeParams: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  coworks: selectCoworksList(),
+  coworksList: selectCoworksArr(),
   loading: selectLoading(),
 });
 

@@ -13,6 +13,11 @@ const selectCoworksList = () => createSelector(
   (substate) => substate.get('coworksArr')
 );
 
+const selectCoworksArr = () => createSelector(
+  selectCoworksDomain(),
+  (substate) => substate.get('coworksArr')
+);
+
 const selectLoading = () => createSelector(
   selectCoworksDomain(),
   (substate) => substate.get('loading')
@@ -35,6 +40,7 @@ export default selectCoworksDomain;
 export {
   selectCoworksDomain,
   selectCoworks,
+  selectCoworksArr,
   selectCoworksList,
   selectLoading,
   selectError,
