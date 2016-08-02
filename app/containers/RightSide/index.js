@@ -14,17 +14,16 @@ import Welcome from 'components/Welcome';
 import Spinner from 'components/Spinner';
 import Description from 'components/Description';
 
-export class RightSide extends React.Component { // eslint-disable-line react/prefer-stateless-function
+export class RightSide extends React.Component {
   componentDidMount() {
     if (this.props.routeParams.cowork_name) {
       this.reloadCoworkInfo('nombre', this.props.routeParams.cowork_name);
     }
   }
-  componentWillUpdate(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (
-        this.props.routeParams.cowork_name &&
-        this.props.filters.value &&
-        this.props.filters.value.toLowerCase() !== nextProps.routeParams.cowork_name.toLowerCase()
+        nextProps.routeParams.cowork_name &&
+        (this.props.routeParams.cowork_name !== nextProps.routeParams.cowork_name)
     ) {
       this.reloadCoworkInfo('nombre', nextProps.routeParams.cowork_name);
     }
@@ -33,23 +32,6 @@ export class RightSide extends React.Component { // eslint-disable-line react/pr
     // TODO: Change 'nombre' key, to find by county, or other parameter.
     this.props.setCoworkFilters(key, value);
     this.props.getCowork();
-
-    // TODO: Change 'nombre' key, to find by county, or other parameter.
-    // if (!nextProps) {
-    //   if (this.props.routeParams.cowork_name) {
-    //     this.props.setCoworkFilters('nombre', this.props.routeParams.cowork_name);
-    //     this.props.getCowork();
-    //   }
-    // } else {
-    //   if (
-    //       this.props.routeParams.cowork_name &&
-    //       nextProps.routeParams.cowork_name &&
-    //       this.props.routeParams.cowork_name.toLowerCase() !== nextProps.routeParams.cowork_name.toLowerCase()
-    //    ) {
-    //     this.props.setCoworkFilters('nombre', this.props.routeParams.cowork_name);
-    //     this.props.getCowork();
-    //   }
-    // }
   }
   render() {
     let toShow = <Welcome />;

@@ -1,4 +1,4 @@
-import { take, call, put, select, fork, cancel } from 'redux-saga/effects';
+import { take, call, put, fork, cancel } from 'redux-saga/effects';
 import { GET_COWORKS } from './constants';
 import { coworksLoaded, coworksLoadingError } from './actions';
 import { firebaseDb } from 'utils/firebase';
