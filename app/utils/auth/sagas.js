@@ -1,5 +1,4 @@
-import { take, call, put, fork, cancel } from 'redux-saga/effects';
-import { LOCATION_CHANGE } from 'react-router-redux';
+import { take, call, put, fork } from 'redux-saga/effects';
 import { LOGIN_FACEBOOK, LOGIN_TWITTER } from './constants';
 import { startLogin, loginSuccess, loginError } from './actions';
 import { firebaseAuth } from 'utils/firebase';

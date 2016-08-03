@@ -21,7 +21,6 @@ export class Login extends React.Component { // eslint-disable-line react/prefer
     this.gotoHome = this.gotoHome.bind(this);
   }
   componentDidMount() {
-    console.log(this.props)
     if (this.props.loggedIn) {
       this.gotoHome();
     }

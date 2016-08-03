@@ -38,7 +38,7 @@ function coworksReducer(state = initialState, action) {
       return state
         .set('loading', false)
         .set('error', false)
-        .set('coworksArr', action.coworksArr);
+        .set('coworksArr', action.coworks);
     case GET_COWORKS_ERROR:
       return state
         .set('error', action.error)

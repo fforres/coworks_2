@@ -11,7 +11,7 @@ import {
 } from './constants';
 
 export const getCoworks = () => ({ type: GET_COWORKS });
-export const coworksLoaded = (coworks, coworksArr) => ({ type: GET_COWORKS_SUCCESS, coworks, coworksArr });
+export const coworksLoaded = (coworks) => ({ type: GET_COWORKS_SUCCESS, coworks });
 export const coworksLoadingError = (error) => ({ type: GET_COWORKS_ERROR, error });
 
 export const actions = {

@@ -1,9 +1,9 @@
-import SearchBar from '../index';
-
-import expect from 'expect';
-import { shallow } from 'enzyme';
-import React from 'react';
-
-describe('<SearchBar />', () => {
-
-});
+// import SearchBar from '../index';
+//
+// import expect from 'expect';
+// import { shallow } from 'enzyme';
+// import React from 'react';
+//
+// describe('<SearchBar />', () => {
+//
+// });

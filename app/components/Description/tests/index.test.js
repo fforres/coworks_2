@@ -1,9 +1,9 @@
-import Description from '../index';
-
-import expect from 'expect';
-import { shallow } from 'enzyme';
-import React from 'react';
-
-describe('<Description />', () => {
-
-});
+// import Description from '../index';
+//
+// import expect from 'expect';
+// import { shallow } from 'enzyme';
+// import React from 'react';
+//
+// describe('<Description />', () => {
+//
+// });

@@ -12,20 +12,19 @@
   border-right-width: 1px;
   border-right-style: solid;
 }
+
 .item:first-of-type {
   border-top: none;
 }
+
 .link {
   text-decoration: none;
   padding: 0.6em;
   display: flex;
   flex-direction: column;
-  color: rgb(0,0,0);
+  color: rgb(0, 0, 0);
 }
 
-.title {
-
-}
 .subTitle {
   padding-top: 0.9rem;
   font-size: 0.85rem;

@@ -2,11 +2,13 @@
   position: relative;
   display: inline-block;
 }
-.textWrapper{
+
+.textWrapper {
   display: flex;
   flex-direction: row;
 }
-.menu:hover{
+
+.menu:hover {
   cursor: pointer;
 }
 
@@ -14,7 +16,6 @@
   position: absolute;
   display: none;
   background-color: inherit;
-  /*overflow: hidden;*/
   top: 0;
   right: 0;
   padding-top: 2em;
@@ -22,9 +23,10 @@
   border-width: 0;
   border-style: none;
   height: 100%;
-  width: 100%
+  width: 100%;
 }
-.menu:hover .sideMenuWrapper{
+
+.menu:hover .sideMenuWrapper {
   display: flex;
   flex-direction: row-reverse;
 }
@@ -36,12 +38,13 @@
   position: relative;
   background-color: white;
   border-radius: 3px;
-  border-color: rgb(0,0,0);
-  border-color: rgba(0,0,0,1);
+  border-color: rgb(0, 0, 0);
+  border-color: rgba(0, 0, 0, 1);
   border-width: 1px;
   border-style: solid;
 }
-.menu:hover .sideMenu{
+
+.menu:hover .sideMenu {
   display: table;
   animation: slide 0.5s forwards;
 }
@@ -51,18 +54,21 @@
 }
 
 .text {
-  padding-right: 0.6em
+  padding-right: 0.6em;
 }
+
 .icon {
   font-family: FontAwesome;
   font-awesome: bars;
 }
-.list{
+
+.list {
   list-style: none;
   padding: 0;
   margin: 0;
   padding: 0.5em;
 }
+
 .link {
   cursor: pointer;
 }

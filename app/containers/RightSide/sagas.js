@@ -1,9 +1,9 @@
-import { take, call, put, fork, select, cancel } from 'redux-saga/effects';
+import { take, call, put, fork, select } from 'redux-saga/effects';
 import { GET_COWORK_BY_KEY } from './constants';
-import { LOCATION_CHANGE } from 'react-router-redux';
 import { coworkLoaded, coworkLoadingError } from './actions';
 import { selectCurrentFilters } from './selectors';
 import { firebaseDb } from 'utils/firebase';
+// import coworksAPI from 'utils/graphql';
 
 const queryState = {};
 
@@ -13,6 +13,7 @@ export function* getCoworkByKey() {
   if (!value) {
     yield put(coworkLoadingError(true));
   } else {
+    // const coworkByName = yield call(() => coworksAPI().get())
     const coworkByKey = yield call(() => firebaseDb
         .ref('/coworks')
         .orderByChild(key)

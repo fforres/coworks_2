@@ -19,7 +19,8 @@ export default function createRoutes(store) {
     injectReducer,
     injectSagas,
   } = getAsyncInjectors(store);
-  injectSagas(authSagas);
+
+  injectSagas(authSagas); // Global Sagas that must be injected in every view.
   return [
     {
       path: '/',

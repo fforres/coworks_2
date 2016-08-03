@@ -18,26 +18,25 @@ class Item extends React.Component { // eslint-disable-line react/prefer-statele
     this.props.changeRoute(`/search/${parsedNombre}`);
   }
   render() {
-    const { nombre, descripcion, direccion } = this.props.cowork;
-    const { calle, numero, ciudad, pais } = direccion;
+    const { name, street, number, city, country, shortDescription } = this.props.cowork;
     return (
       <div className={styles.item}>
         <a
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            this.itemClicked(nombre);
+            this.itemClicked(name);
           }}
           className={styles.link}
         >
-          <div className={styles.title}>
+          <div>
             <b>
-              {nombre}
+              {name}
             </b>
-            <i className={styles.address}> {calle}, {numero} - {ciudad}, {pais}</i>
+            <i className={styles.address}> {street}, {number} - {city.name}, {country.name}</i>
           </div>
           <div className={styles.subTitle}>
-            <span>{descripcion.corta}</span>
+            <span>{shortDescription}</span>
           </div>
         </a>
       </div>
@@ -47,15 +46,16 @@ class Item extends React.Component { // eslint-disable-line react/prefer-statele
 
 Item.propTypes = {
   cowork: PropTypes.shape({
-    nombre: PropTypes.string.isRequired,
-    descripcion: PropTypes.shape({
-      corta: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    shortDescription: PropTypes.string.isRequired,
+    street: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    city: PropTypes.shape({
+      name: PropTypes.string.isRequired,
     }).isRequired,
-    direccion: PropTypes.shape({
-      calle: PropTypes.string.isRequired,
-      numero: PropTypes.string.isRequired,
-      ciudad: PropTypes.string.isRequired,
-      pais: PropTypes.string.isRequired,
+    country: PropTypes.shape({
+      name: PropTypes.string.isRequired,
     }).isRequired,
   }),
   changeRoute: PropTypes.func.isRequired,

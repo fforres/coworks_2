@@ -42,7 +42,7 @@ configureStore(Immutable.fromJS({}), browserHistory, (store) => {
   // could be used with the devTools' store.
   // As this boilerplate uses Redux & Redux-Saga, the `updateStore` is needed
   // if you want to `take` actions in your Sagas, dispatched from devTools.
-  if (window.devToolsExtension) {
+  if (window.devToolsExtension && process.env.NODE_ENV !== 'production') {
     window.devToolsExtension.updateStore(store);
   }
 

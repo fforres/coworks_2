@@ -43,7 +43,7 @@ export class Home extends React.Component { // eslint-disable-line react/prefer-
 
 Home.propTypes = {
   getCoworks: PropTypes.func.isRequired,
-  coworksList: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
+  coworksList: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired, // TODO: Why is it an object the first time?
   loading: PropTypes.bool.isRequired,
   routeParams: PropTypes.object.isRequired,
 };

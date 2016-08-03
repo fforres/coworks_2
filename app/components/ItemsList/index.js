@@ -29,7 +29,7 @@ class ItemsList extends React.Component { // eslint-disable-line react/prefer-st
 }
 
 ItemsList.propTypes = {
-  coworksList: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
+  coworksList: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired, // TODO: Why is it an object the first time?
   loading: PropTypes.bool.isRequired,
 };
 

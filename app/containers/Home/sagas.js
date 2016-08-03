@@ -1,26 +1,36 @@
-import { take, call, put, fork, cancel } from 'redux-saga/effects';
+import { take, call, put } from 'redux-saga/effects';
 import { GET_COWORKS } from './constants';
 import { coworksLoaded, coworksLoadingError } from './actions';
-import { firebaseDb } from 'utils/firebase';
-
+import coworksAPI from 'utils/graphql';
 
 // Get a list of default coworks;
 export function* getCoworks() {
-  const coworks = yield call(() => firebaseDb
-      .ref('/coworks')
-      .once('value')
-      .then((snapshot) => snapshot.val())
-      .catch((data) => ({ error: data }))
-  );
-
-  if (coworks.error) {
-    yield put(coworksLoadingError(coworks.error));
-  } else {
-    const coworksArr = [];
-    Object.keys(coworks).forEach((el) => {
-      coworksArr.push(coworks[el]);
-    });
-    yield put(coworksLoaded(coworks, coworksArr));
+  try {
+    const coworksGraphQL = yield call(() => coworksAPI().get(`
+        {
+          coworkList {
+            name
+            id
+            shortDescription
+            number
+            street
+            city {
+              name
+            }
+            country {
+              name
+            }
+          }
+        }
+      `)
+      .then((data) => data.json())
+      .then((data) => data.data)
+      .catch(console.error)
+    );
+    yield put(coworksLoaded(coworksGraphQL.coworkList));
+  } catch (err) {
+    console.error(err);
+    yield put(coworksLoadingError(true));
   }
 }
 

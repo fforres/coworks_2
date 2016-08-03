@@ -5,11 +5,13 @@
   justify-content: center;
   align-items: center;
 }
-.titleLink{
+
+.titleLink {
   text-decoration: none;
-  color: rgb(0,0,0);
-  color: rgba(0,0,0,0.6);
+  color: rgb(0, 0, 0);
+  color: rgba(0, 0, 0, 0.6);
 }
+
 .paragraph {
   text-align: justify;
   padding: 0.6rem;
