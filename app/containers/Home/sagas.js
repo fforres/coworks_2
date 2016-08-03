@@ -6,7 +6,7 @@ import coworksAPI from 'utils/graphql';
 // Get a list of default coworks;
 export function* getCoworks() {
   try {
-    const coworksGraphQL = yield call(() => coworksAPI().get(`
+    const coworksGraphQL = yield call(() => coworksAPI.get(`
         {
           coworkList {
             name
@@ -14,6 +14,8 @@ export function* getCoworks() {
             shortDescription
             number
             street
+            latitud
+            longitud
             city {
               name
             }

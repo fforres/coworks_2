@@ -3,35 +3,46 @@ import { GET_COWORK_BY_KEY } from './constants';
 import { coworkLoaded, coworkLoadingError } from './actions';
 import { selectCurrentFilters } from './selectors';
 import { firebaseDb } from 'utils/firebase';
-// import coworksAPI from 'utils/graphql';
+import coworksAPI from 'utils/graphql';
 
 const queryState = {};
 
 export function* getCoworkByKey() {
-  const filters = yield select(selectCurrentFilters());
-  const { key, value } = filters;
-  if (!value) {
-    yield put(coworkLoadingError(true));
-  } else {
-    // const coworkByName = yield call(() => coworksAPI().get())
-    const coworkByKey = yield call(() => firebaseDb
-        .ref('/coworks')
-        .orderByChild(key)
-        .equalTo(value)
-        .once('value')
-        .then((snapshot) => {
-          if (Object.keys(snapshot.val()) < 1) {
-            return { error: `No Data for key: ${key} and value: ${value}` };
-          }
-          return snapshot.val()[Object.keys(snapshot.val())[0]];
-        })
-        .catch((data) => ({ error: data }))
-    );
-    if (coworkByKey.error) {
-      yield put(coworkLoadingError(coworkByKey.error));
+  try {
+    const { value } = yield select(selectCurrentFilters());
+    if (!value) {
+      yield put(coworkLoadingError(true));
     } else {
-      yield put(coworkLoaded(coworkByKey));
+      const cowork = yield call(() => coworksAPI.get(`
+        {
+          coworkByName(name:"${value}") {
+            name
+            longDescription
+            latitud
+            longitud
+            phoneNumber
+            number
+            street
+            webpage
+            city {
+              name
+              id
+            }
+            country {
+              name
+              id
+            }
+          }
+        }
+      `)
+      .then((data) => data.json())
+      .then((data) => data.data)
+      .catch(console.error));
+      console.log(cowork.coworkByName);
+      yield put(coworkLoaded(cowork.coworkByName));
     }
+  } catch (err) {
+    yield put(coworkLoadingError(true));
   }
 }
 

@@ -16,3 +16,17 @@
   text-align: justify;
   padding: 0.6rem;
 }
+
+.subTitle {
+  font-size: 0.8rem;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.mapImageWrapper {
+
+}
+
+.mapImage {
+  width: 100%;
+}
