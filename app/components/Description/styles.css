@@ -1,0 +1,32 @@
+.description {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.titleLink {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.paragraph {
+  text-align: justify;
+  padding: 0.6rem;
+}
+
+.subTitle {
+  font-size: 0.8rem;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.mapImageWrapper {
+
+}
+
+.mapImage {
+  width: 100%;
+}

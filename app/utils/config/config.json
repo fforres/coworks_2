@@ -1,0 +1,20 @@
+{
+  "development": {
+    "graphQlApi": {
+      "url": "http://localhost:3009/graphql"
+    },
+    "auth0": {
+      "clientId": "tCUdq4hDoaSbMu2EGxS42Rp0tqICgH6H",
+      "clientDomain": "fforres.auth0.com"
+    }
+  },
+  "production": {
+    "graphQlApi": {
+      "url": "http://api.coworks.cl"
+    },
+    "auth0": {
+      "clientId": "tCUdq4hDoaSbMu2EGxS42Rp0tqICgH6H",
+      "clientDomain": "fforres.auth0.com"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+.leftMenu {
+  min-width: 8.5rem;
+}
+
+.columnify {
+  display: flex;
+  flex-direction: column;
+}

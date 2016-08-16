@@ -1,0 +1,32 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.link {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.iconsWrapper {
+  width: 6rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.icon {
+  font-size: 3rem;
+}
+
+.facebook {
+  font-family: FontAwesome;
+  font-awesome: facebook;
+}
+
+.twitter {
+  font-family: FontAwesome;
+  font-awesome: twitter;
+}
