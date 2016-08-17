@@ -8,36 +8,42 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { selectLoggedIn } from 'utils/auth/selectors';
+import { selectQueryParams } from 'containers/App/selectors';
+
 import styles from './styles.css';
 import { createStructuredSelector } from 'reselect';
 import { push } from 'react-router-redux';
-import { loginFacebook, loginTwitter } from 'utils/auth/actions';
+import { saveUserSession } from 'utils/auth/actions';
 
 export class Login extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
-    this.loginFacebook = this.loginFacebook.bind(this);
-    this.loginTwitter = this.loginTwitter.bind(this);
     this.gotoHome = this.gotoHome.bind(this);
+    this.saveUserSession = this.saveUserSession.bind(this);
   }
   componentDidMount() {
     if (this.props.loggedIn) {
       this.gotoHome();
+    } else {
+      this.saveUserSession();
     }
   }
-  componentDidUpdate() {
-    if (this.props.loggedIn) {
+  componentDidUpdate(newProps) {
+    if (this.props.loggedIn && this.props.loggedIn !== newProps.loggedIn) {
       this.gotoHome();
+    } else {
+      this.saveUserSession();
+    }
+  }
+  saveUserSession() {
+    const auth0Data = JSON.parse(localStorage.getItem('AUTH0_DATA'));
+    if (auth0Data) {
+      localStorage.removeItem('AUTH0_DATA');
+      this.props.saveUserSession(auth0Data);
     }
   }
   gotoHome() {
     this.props.changeRoute('/');
-  }
-  loginFacebook() {
-    this.props.loginWithFacebook();
-  }
-  loginTwitter() {
-    this.props.loginWithTwitter();
   }
   render() {
     return (
@@ -49,31 +55,6 @@ export class Login extends React.Component { // eslint-disable-line react/prefer
           ]}
         />
         <h1> Login </h1>
-        <h4> Ingresa usando Facebook o Twitter. </h4>
-        <div className={styles.iconsWrapper}>
-          <a
-            className={styles.link}
-            onClick={(e) => {
-              e.preventDefault();
-              this.loginFacebook();
-            }}
-          >
-            <div className={styles.icon}>
-              <span className={styles.facebook}></span>
-            </div>
-          </a>
-          <a
-            className={styles.link}
-            onClick={(e) => {
-              e.preventDefault();
-              this.loginTwitter();
-            }}
-          >
-            <div className={styles.icon}>
-              <span className={styles.twitter}></span>
-            </div>
-          </a>
-        </div>
       </div>
     );
   }
@@ -83,19 +64,22 @@ export class Login extends React.Component { // eslint-disable-line react/prefer
 Login.propTypes = {
   dispatch: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
-  loginWithFacebook: PropTypes.func.isRequired,
-  loginWithTwitter: PropTypes.func.isRequired,
   changeRoute: PropTypes.func.isRequired,
+  saveUserSession: PropTypes.func.isRequired,
+  queryParams: PropTypes.shape({
+    state: PropTypes.string,
+    code: PropTypes.string,
+  }).isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
+  queryParams: selectQueryParams(),
   loggedIn: selectLoggedIn(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    loginWithFacebook: () => dispatch(loginFacebook()),
-    loginWithTwitter: () => dispatch(loginTwitter()),
+    saveUserSession: (code, state) => dispatch(saveUserSession(code, state)),
     changeRoute: (url) => dispatch(push(url)),
     dispatch,
   };

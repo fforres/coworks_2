@@ -15,6 +15,9 @@ const selectLocationState = () => {
   };
 };
 
+const selectQueryParams = () => (state) => state.toJS().route.locationBeforeTransitions.query;
+
 export {
   selectLocationState,
+  selectQueryParams,
 };

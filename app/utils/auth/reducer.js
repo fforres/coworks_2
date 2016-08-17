@@ -8,9 +8,9 @@ import {
 } from 'immutable';
 import {
   START_LOGIN,
-  LOGIN_SUCCESS,
   LOGIN_ERROR,
   START_LOGOUT,
+  SAVE_USER_SESSION,
 } from './constants';
 import { LOAD } from 'redux-storage';
 const userData = fromJS({});
@@ -31,23 +31,20 @@ function loginReducer(state = initialState, action) {
     case LOAD: // INITIAL LOAD. RESTORING SESSION
       return state
         .merge(action.payload.login);
-    case START_LOGOUT: // INITIAL LOAD. RESTORING SESSION
+    case START_LOGOUT:
       return initialState;
-    case LOGIN_SUCCESS:
-      {
-        const newState = state
-          .set('loggingOut', false)
-          .set('loggedIn', true)
-          .set('loggingIn', false)
-          .set('userData', { 2: 2 });
-        return newState;
-      }
+    case SAVE_USER_SESSION:
+      return state
+        .set('loggedIn', true)
+        .set('loggingOut', false)
+        .set('loggingIn', false)
+        .set('userData', action.userData);
     case LOGIN_ERROR:
       return state
         .set('loggingOut', false)
         .set('loggedIn', false)
         .set('loggingIn', false)
-        .set('userData', userData);
+        .set('userData', action.userData);
     default:
       return state;
   }

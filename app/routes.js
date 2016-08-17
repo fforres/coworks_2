@@ -109,6 +109,27 @@ export default function createRoutes(store) {
         importModules.catch(errorLoading);
       },
     }, {
+      path: '/login/callback',
+      name: 'login',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          // System.import('containers/Login/reducer'),
+          // System.import('containers/Login/sagas'),
+          System.import('containers/Login'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        // importModules.then(([reducerLogin, sagas, component]) => {
+        importModules.then(([component]) => {
+          // injectReducer('login', reducerLogin.default);
+          // injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
@@ -118,5 +139,4 @@ export default function createRoutes(store) {
       },
     },
   ];
-
 }

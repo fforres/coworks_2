@@ -4,8 +4,9 @@
       "url": "http://localhost:3009/graphql"
     },
     "auth0": {
-      "clientId": "tCUdq4hDoaSbMu2EGxS42Rp0tqICgH6H",
-      "clientDomain": "fforres.auth0.com"
+      "clientId": "LhmdR4Z0WYWBXcn8ottxziIUP1Cx0zCl",
+      "clientDomain": "fforres.auth0.com",
+      "redirectUrl": "http://localhost:3000/login/callback"
     }
   },
   "production": {
@@ -13,8 +14,9 @@
       "url": "http://api.coworks.cl"
     },
     "auth0": {
-      "clientId": "tCUdq4hDoaSbMu2EGxS42Rp0tqICgH6H",
-      "clientDomain": "fforres.auth0.com"
+      "clientId": "LhmdR4Z0WYWBXcn8ottxziIUP1Cx0zCl",
+      "clientDomain": "fforres.auth0.com",
+      "redirectUrl": "http://coworks.cl/login/callback"
     }
   }
 }

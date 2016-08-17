@@ -22,7 +22,7 @@ class Item extends React.Component { // eslint-disable-line react/prefer-statele
     return (
       <div className={styles.item}>
         <a
-          href="#"
+          href="#2"
           onClick={(e) => {
             e.preventDefault();
             this.itemClicked(name);
