@@ -1,14 +1,16 @@
-# Contributing to react-boilerplate
+# Contributing to Coworks
 
-Love react-boilerplate and want to help? Thanks so much, there's something to do for everybody!
+Love the project and want to help?
+Thanks so much!
 
 Please take a moment to review this document in order to make the contribution process easy and effective for everyone involved.
 
-Following these guidelines helps to communicate that you respect the time of the developers managing and developing this open source project. In return, they should reciprocate that respect in addressing your issue or assessing patches and features.
+Following these guidelines helps to communicate that you respect the time of the developers managing and developing this open source project.
+In return, they should reciprocate that respect in addressing your issue or assessing patches and features.
 
 ## Using the issue tracker
 
-The [issue tracker](https://github.com/mxstbr/react-boilerplate/issues) is
+The [issue tracker](https://github.com/fforres/coworks_2/issues) is
 the preferred channel for [bug reports](#bugs), [features requests](#features)
 and [submitting pull requests](#pull-requests).
 
@@ -20,11 +22,11 @@ Good bug reports are extremely helpful - thank you!
 
 Guidelines for bug reports:
 
-1. **Use the GitHub issue search** &mdash; check if the issue has already been reported.
+1. **Use the GitHub issue search** &mdash; Check if the issue has already been reported.
 
-2. **Check if the issue has been fixed** &mdash; try to reproduce it using the latest `master` or development branch in the repository.
+2. **Check if the issue has been fixed** &mdash; Try to reproduce it using the latest `master` or development branch in the repository.
 
-3. **Isolate the problem** &mdash; ideally create a [reduced test case](https://css-tricks.com/reduced-test-cases/) and a live example.
+3. **Isolate the problem** &mdash; ***Ideally*** create a [reduced test case](https://css-tricks.com/reduced-test-cases/) and a live example, if not... All reports are is welcome :+1:
 
 A good bug report shouldn't leave others needing to chase you up for more information. Please try to be as detailed as possible in your report. What is your environment? What steps will reproduce the issue? What browser(s) and OS
 experience the problem? What would you expect to be the outcome? All these details will help people to fix any potential bugs.
@@ -76,11 +78,11 @@ included in the project:
 
    ```bash
    # Clone your fork of the repo into the current directory
-   git clone https://github.com/<your-username>/react-boilerplate.git
+   git clone https://github.com/<your-username>/coworks_2.git
    # Navigate to the newly cloned directory
-   cd react-boilerplate
+   cd coworks_2
    # Assign the original repo to a remote called "upstream"
-   git remote add upstream https://github.com/mxstbr/react-boilerplate.git
+   git remote add upstream https://github.com/fforres/coworks_2.git
    ```
 
 2. If you cloned a while ago, get the latest changes from upstream:
@@ -114,4 +116,4 @@ included in the project:
     with a clear title and description.
 
 **IMPORTANT**: By submitting a patch, you agree to allow the project
-owners to license your work under the terms of the [MIT License](https://github.com/mxstbr/react-boilerplate/blob/master/LICENSE.md).
+owners to license your work under the terms of the [MIT License](https://github.com/fforres/coworks_2/blob/master/LICENSE.md).
