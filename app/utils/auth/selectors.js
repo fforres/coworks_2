@@ -19,6 +19,12 @@ const selectUserData = () => createSelector(
   (currentLoginState) => currentLoginState.get('userData'),
 );
 
+const selectCode = () => createSelector(
+  selectLoginDomain(),
+  (currentLoginState) => currentLoginState.get('code'),
+);
+
+
 /**
  * Default selector used by Login
  */
@@ -33,4 +39,5 @@ export {
   selectLoginDomain,
   selectLoggedIn,
   selectUserData,
+  selectCode,
 };

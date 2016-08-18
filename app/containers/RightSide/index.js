@@ -37,10 +37,8 @@ export class RightSide extends React.Component {
     let toShow = <Welcome />;
     if (this.props.rightSideState.loading) {
       toShow = <Spinner />;
-    } else {
-      if (this.props.currentCowork) {
-        toShow = <Description {...this.props.currentCowork} />;
-      }
+    } else if (this.props.currentCowork) {
+      toShow = <Description {...this.props.currentCowork} />;
     }
     return (
       <div className={styles.rightSide}>

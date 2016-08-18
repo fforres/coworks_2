@@ -7,11 +7,9 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { startLogout } from 'utils/auth/actions';
+import { startLogout, loginAuth0 } from 'utils/auth/actions';
 import { createStructuredSelector } from 'reselect';
 import { selectLoggedIn } from 'utils/auth/selectors';
-import { loginAuth0 } from 'utils/auth/actions';
-
 
 import styles from './styles.css';
 

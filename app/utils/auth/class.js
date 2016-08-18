@@ -5,17 +5,39 @@ import config from 'utils/config';
 export default class AuthService {
   constructor() {
     // Configure Auth0
-    this.lock = new Auth0Lock(config.auth0.clientId, config.auth0.clientDomain, {});
+    this.lock = new Auth0Lock(config.auth0.clientId, config.auth0.clientDomain, {
+      popup: true,
+      auth: {
+        redirectUrl: config.auth0.redirectUrl,
+        responseType: 'token',
+        sso: true,
+        params: {
+          scope: 'openid email', // Learn about scopes: https://auth0.com/docs/scopes
+        },
+      },
+    });
       // Add callback for lock `authenticated` event
-    this.lock.on('authenticated', this.doAuthentication.bind(this));
+    this.lock.on('authenticated', this.doAuthentication);
       // binds login functions to keep this context
+    this.doAuthentication = this.doAuthentication.bind(this);
     this.login = this.login.bind(this);
+    this.getProfile = this.getProfile.bind(this);
+  }
+
+  getProfile(idToken) {
+    return new Promise((resolve, reject) => {
+      this.lock.getProfile(idToken, (err, profile) => {
+        if (!err) {
+          resolve(profile);
+        } else {
+          reject(err);
+        }
+      });
+    });
   }
 
   doAuthentication(authResult) {
     // Saves the user token
-    console.log(authResult);
-    debugger;
     this.setToken(authResult.idToken);
   }
 
