@@ -2,7 +2,7 @@ import storage from 'redux-storage';
 // import storageDebounce from 'redux-storage-decorator-debounce';
 import filter from 'redux-storage-decorator-immutable-filter';
 import { fromJS } from 'immutable';
-import createEngine from 'redux-storage-engine-localforage';
+import createEngine from './localForageEngine';
 
 const updateState = (state, storageStateJson) => {
   try {
