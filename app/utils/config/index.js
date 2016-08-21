@@ -1,8 +1,9 @@
 import configData from './config.json';
 
 const configGetter = () => {
-  let config = configData[process.env.NODE_ENV];
-  if (process.env.NODE_ENV || !configData[process.env.NODE_ENV]) {
+  const env = process.env.NODE_ENV;
+  let config = configData[env];
+  if (env === 'development' || !config) {
     config = configData.development;
   }
   return config;
