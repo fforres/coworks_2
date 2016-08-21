@@ -4,7 +4,7 @@
 
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
-import createSagaMiddleware from 'redux-saga';
+import createSagaMiddleware from 'redux-saga/dist/redux-saga';
 import createReducer from './reducers';
 import configureStorage, { updateStateOnStorageLoad } from './configureStorage';
 

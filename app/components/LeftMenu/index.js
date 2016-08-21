@@ -11,9 +11,7 @@ import styles from './styles.css';
 // Then import the virtualized Select HOC
 
 class LeftMenu extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  updateItem(value) {
-    console.log(value);
-  }
+  // updateItem(value) {}
   render() {
     return (
       <div className={[styles.leftMenu, styles.columnify].join(' ')}>

@@ -41,7 +41,7 @@ import createRoutes from './routes';
 // Install ServiceWorker and AppCache in the end since
 // it's not most important operation and if main code fails,
 // we do not want it installed
-import { install } from 'offline-plugin/runtime';
+// import { install } from 'offline-plugin/runtime';
 
 // Create redux store with history
 // this uses the singleton browserHistory provided by react-router
@@ -100,5 +100,5 @@ configureStore(initialState, browserHistory, (store) => {
   // Install ServiceWorker and AppCache in the end since
   // it's not most important operation and if main code fails,
   // we do not want it installed
-  install();
+  // install();
 });
