@@ -28,9 +28,13 @@ function loginReducer(state = initialState, action) {
       return state
         .set('loggingOut', false)
         .set('loggingIn', true);
-    case LOAD: // INITIAL LOAD. RESTORING SESSION
-      return state
+    case LOAD: { // INITIAL LOAD. RESTORING SESSION
+      if (action.payload && action.payload.login) {
+        return state
         .merge(action.payload.login);
+      }
+      return state;
+    }
     case START_LOGOUT:
       return initialState;
     case SAVE_USER_SESSION:
