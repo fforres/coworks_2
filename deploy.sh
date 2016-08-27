@@ -30,7 +30,9 @@ rm -rf out/**/* || exit 0
 echo "COPYING /BUILD folder into /OUT"
 cp -r ./build/* ./out
 echo "COPYING CNAME folder into /OUT"
-cp CNAME ./out
+cp ./server/deploy/CNAME ./out
+echo "COPYING 404 folder into /OUT"
+cp ./server/deploy/404.html ./out
 ls out
 
 
