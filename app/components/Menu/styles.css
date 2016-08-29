@@ -1,15 +1,26 @@
-.menu {
-  position: relative;
-  display: inline-block;
+.menuItem {
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
-.textWrapper {
+.menu {
+  position: relative;
   display: flex;
-  flex-direction: row;
 }
 
 .menu:hover {
   cursor: pointer;
+}
+
+.textWrapper {
+  display: flex;
+  align-self: center;
+  flex-direction: row;
+}
+
+.menu:hover .sideMenuWrapper {
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .sideMenuWrapper {
@@ -18,17 +29,12 @@
   background-color: inherit;
   top: 0;
   right: 0;
-  margin-top: 2em;
+  padding-top: 3em;
   border-radius: 3px;
   border-width: 0;
   border-style: none;
   height: 100%;
   width: 100%;
-}
-
-.menu:hover .sideMenuWrapper {
-  display: flex;
-  flex-direction: row-reverse;
 }
 
 .sideMenu {
@@ -53,6 +59,10 @@
   100% { top: 0; }
 }
 
+.hr {
+  margin: 0;
+}
+
 .text {
   margin-right: 0.6em;
 }
@@ -64,5 +74,7 @@
 }
 
 .link {
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
   cursor: pointer;
 }

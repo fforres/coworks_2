@@ -38,6 +38,8 @@ import { selectLocationState } from 'containers/App/selectors';
 import App from 'containers/App';
 import createRoutes from './routes';
 
+import 'elemental/less/elemental.less';
+
 // Install ServiceWorker and AppCache in the end since
 // it's not most important operation and if main code fails,
 // we do not want it installed
