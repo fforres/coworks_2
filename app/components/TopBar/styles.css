@@ -10,3 +10,13 @@
   border-bottom-style: solid;
   border-bottom-width: 1px;
 }
+
+.button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.buttonIcon {
+  padding-right: 0.6em;
+}

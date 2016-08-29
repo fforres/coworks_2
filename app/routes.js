@@ -130,6 +130,36 @@ export default function createRoutes(store) {
         importModules.catch(errorLoading);
       },
     }, {
+      path: '/suggest_cowork',
+      name: 'suggest_cowork',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          // REDUCERS
+          System.import('containers/SuggestCowork/reducer'),
+
+          // SAGAS
+          System.import('containers/SuggestCowork/sagas'),
+
+          System.import('containers/SuggestCowork'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([
+          reducerSuggestCowork, // REDUCERS
+          sagasSuggestCowork, // SAGAS
+          component,
+        ]) => {
+          injectReducer('suggestCowork', reducerSuggestCowork.default);
+
+          injectSagas(sagasSuggestCowork.default);
+
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {

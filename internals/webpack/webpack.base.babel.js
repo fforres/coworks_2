@@ -32,6 +32,10 @@ module.exports = (options) => ({
       include: /node_modules/,
       loaders: ['style-loader', 'css-loader'],
     }, {
+      // Transform our own .css files with PostCSS and CSS-modules
+      test: /\.less$/,
+      loader: 'style!css!less',
+    }, {
       test: /\.(eot|svg|ttf|woff|woff2)$/,
       loader: 'file-loader',
     }, {

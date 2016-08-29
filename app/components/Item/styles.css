@@ -30,6 +30,10 @@
   color: rgb(0, 0, 0);
 }
 
+.link:hover {
+  text-decoration: none;
+}
+
 .subTitle {
   position: relative;
   height: 4.5em;
