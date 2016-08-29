@@ -1,4 +1,7 @@
 .item {
+  position: relative;
+  display: flex;
+  flex-direction: row;
   border-top-color: rgb(0, 0, 0);
   border-top-color: rgba(0, 0, 0, 0.1);
   border-top-width: 1px;
@@ -11,6 +14,7 @@
   border-right-color: rgba(0, 0, 0, 0.1);
   border-right-width: 1px;
   border-right-style: solid;
+  overflow: hidden;
 }
 
 .item:first-of-type {
@@ -19,17 +23,46 @@
 
 .link {
   text-decoration: none;
-  padding: 0.6em;
+  margin: 0.6em;
+  margin-bottom: 1em;
   display: flex;
   flex-direction: column;
   color: rgb(0, 0, 0);
 }
 
 .subTitle {
-  padding-top: 0.9rem;
+  position: relative;
+  height: 4.5em;
+  overflow: hidden;
+}
+
+.subTitleText {
+  margin-top: 0.9rem;
   font-size: 0.85rem;
+}
+
+.fadeOut {
+  background: linear-gradient(rgba(0, 0, 0, 0), white);
+  bottom: 0;
+  height: 1.5em;
+  width: 100%;
+  position: absolute;
 }
 
 .address {
   text-transform: capitalize;
+}
+
+.actions {
+  margin-top: 0.8rem;
+
+  /* display: none; */
+}
+
+.actionButtons {
+  border-color: lightgrey;
+  border-radius: 0.4em;
+  border-width: 1px;
+  border-style: solid;
+  margin: 0.4em;
 }

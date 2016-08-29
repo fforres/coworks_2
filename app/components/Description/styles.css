@@ -1,9 +1,10 @@
 .description {
-  padding: 1rem;
+  margin: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 50em;
 }
 
 .titleLink {
@@ -14,7 +15,7 @@
 
 .paragraph {
   text-align: justify;
-  padding: 0.6rem;
+  margin: 0.6rem;
 }
 
 .subTitle {
