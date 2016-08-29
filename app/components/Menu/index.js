@@ -10,6 +10,7 @@ import { push } from 'react-router-redux';
 import { startLogout, loginAuth0 } from 'utils/auth/actions';
 import { createStructuredSelector } from 'reselect';
 import { selectLoggedIn } from 'utils/auth/selectors';
+import { Icon } from 'react-fa';
 
 import styles from './styles.css';
 
@@ -39,7 +40,7 @@ export class Menu extends React.Component { // eslint-disable-line react/prefer-
       >
         <span className={styles.textWrapper}>
           <span className={styles.text}> Menu </span>
-          <span className={styles.icon}></span>
+          <span className={styles.icon}> <Icon name="bars" /> </span>
         </span>
         <div className={styles.sideMenuWrapper} >
           <div className={styles.sideMenu} >
@@ -48,6 +49,12 @@ export class Menu extends React.Component { // eslint-disable-line react/prefer-
               <li className={[styles.link]}> Feedback </li>
               <li> <hr /> </li>
               <li className={[styles.link]}> Disclaimer </li>
+              <li
+                className={[styles.link]}
+                onClick={() => {
+                  window.open('http://github.com/fforres/coworks_2', '_blank');
+                }}
+              > <Icon name="github" /> Code </li>
             </ul>
           </div>
         </div>

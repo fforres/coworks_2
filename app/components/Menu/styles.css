@@ -18,7 +18,7 @@
   background-color: inherit;
   top: 0;
   right: 0;
-  padding-top: 2em;
+  margin-top: 2em;
   border-radius: 3px;
   border-width: 0;
   border-style: none;
@@ -54,19 +54,13 @@
 }
 
 .text {
-  padding-right: 0.6em;
-}
-
-.icon {
-  font-family: FontAwesome;
-  font-awesome: bars;
+  margin-right: 0.6em;
 }
 
 .list {
   list-style: none;
   padding: 0;
-  margin: 0;
-  padding: 0.5em;
+  margin: 0.5em;
 }
 
 .link {

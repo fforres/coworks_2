@@ -1,6 +1,5 @@
 .itemsList {
-  max-width: 50%;
-  min-width: 50%;
+  max-width: 100rem;
   height: 100%;
   overflow-y: scroll;
 }
