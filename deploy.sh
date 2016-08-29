@@ -33,6 +33,9 @@ echo "COPYING CNAME folder into /OUT"
 cp ./server/deploy/CNAME ./out
 echo "COPYING 404 folder into /OUT"
 cp ./server/deploy/404.html ./out
+echo "COPYING TOS_and_privacy_policy folder into /OUT"
+cp ./server/deploy/TOS_and_privacy_policy.html ./out
+
 ls out
 
 
