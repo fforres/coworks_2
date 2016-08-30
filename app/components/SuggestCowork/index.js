@@ -9,12 +9,17 @@ import styles from './styles.css';
 
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import Form from './form';
 
 class SuggestCowork extends Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div className={styles.base}>
-        <h1>Hola :D</h1>
+        <Form
+          onSubmit={(e) => {
+            console.log(e);
+          }}
+        />
       </div>
     );
   }

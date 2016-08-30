@@ -10,7 +10,6 @@ import { push } from 'react-router-redux';
 import { startLogout, loginAuth0 } from 'utils/auth/actions';
 import { createStructuredSelector } from 'reselect';
 import { selectLoggedIn } from 'utils/auth/selectors';
-import { Button } from 'elemental';
 import { Icon } from 'react-fa';
 
 import styles from './styles.css';
@@ -34,15 +33,14 @@ export class Menu extends React.Component { // eslint-disable-line react/prefer-
     }
     return (
       <div className={styles.textWrapper}>
-        <Button
-          type="hollow-warning"
+        <button
           onClick={(e) => {
             e.preventDefault();
             this.props.changeRoute('/suggest_cowork');
           }}
         >
           Sugiere un Cowork
-        </Button>
+        </button>
         <a
           className={[styles.menu, styles.menuItem].join(' ')}
           onClick={(e) => {
