@@ -10,17 +10,19 @@ import { push } from 'react-router-redux';
 import { startLogout, loginAuth0 } from 'utils/auth/actions';
 import { createStructuredSelector } from 'reselect';
 import { selectLoggedIn } from 'utils/auth/selectors';
-import { RaisedButton, MenuItem, IconMenu } from 'material-ui';
-// import styles from './styles.css';
-import IconButton from 'material-ui/IconButton/IconButton';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import { RaisedButton } from 'material-ui';
+import styles from './styles.css';
+import FontIcon from 'material-ui/FontIcon';
 
-
-export class Menu extends React.Component { // eslint-disable-line react/prefer-stateless-function
+export class LateralMenu extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
+    this.state = {
+      open: false,
+    };
     this.toLogin = this.toLogin.bind(this);
     this.doLogout = this.doLogout.bind(this);
+    this.handleTouchTap = this.handleTouchTap.bind(this);
   }
   toLogin() {
     this.props.loginAuth0();
@@ -28,35 +30,31 @@ export class Menu extends React.Component { // eslint-disable-line react/prefer-
   doLogout() {
     this.props.startLogout();
   }
+  handleTouchTap(event) {
+    event.preventDefault();
+    this.setState({
+      open: true,
+      anchorEl: event.currentTarget,
+    });
+  }
+
   render() {
-    // let sessionData = (<li className={[styles.link]} onClick={this.toLogin} > Login </li>);
-    // if (this.props.loggedIn) {
-    //   sessionData = (<li className={[styles.link]} onClick={this.doLogout} > Logout </li>);
-    // }
+    let sessionData = (<li className={[styles.link]} onClick={this.toLogin} > Login </li>);
+    if (this.props.loggedIn) {
+      sessionData = (<li className={[styles.link]} onClick={this.doLogout} > Logout </li>);
+    }
     return (
-      <div>
+      <div className={styles.textWrapper}>
         <RaisedButton
           label="Sugiere un Cowork"
+          className={[styles.menu, styles.menuItem].join(' ')}
           onClick={(e) => {
             e.preventDefault();
             this.props.changeRoute('/suggest_cowork');
           }}
           primary
         />
-        <IconMenu
-          iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
-          anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
-          targetOrigin={{ horizontal: 'right', vertical: 'top' }}
-        >
-          <MenuItem primaryText="Refresh" />
-          <MenuItem primaryText="Send feedback" />
-          <MenuItem primaryText="Settings" />
-          <MenuItem primaryText="Help" />
-          <MenuItem primaryText="Sign out" />
-        </IconMenu>
-
-
-        {/* <a
+        <a
           className={[styles.menu, styles.menuItem].join(' ')}
           onClick={(e) => {
             e.preventDefault();
@@ -64,7 +62,7 @@ export class Menu extends React.Component { // eslint-disable-line react/prefer-
         >
           <span className={styles.textWrapper}>
             <span className={styles.text}> Menu </span>
-            <span className={styles.icon}> <Icon name="bars" /> </span>
+            <span className={styles.icon}> <FontIcon className="muidocs-icon-action-home" /> </span>
           </span>
           <div className={styles.sideMenuWrapper} >
             <div className={styles.sideMenu} >
@@ -78,17 +76,17 @@ export class Menu extends React.Component { // eslint-disable-line react/prefer-
                   onClick={() => {
                     window.open('http://github.com/fforres/coworks_2', '_blank');
                   }}
-                > <Icon name="github" /> Code </li>
+                >  Code </li>
               </ul>
             </div>
           </div>
-        </a> */}
+        </a>
       </div>
     );
   }
 }
 
-Menu.propTypes = {
+LateralMenu.propTypes = {
   loginAuth0: PropTypes.func.isRequired,
   changeRoute: PropTypes.func.isRequired,
   startLogout: PropTypes.func.isRequired,
@@ -109,4 +107,4 @@ const mapStateToProps = createStructuredSelector({
   loggedIn: selectLoggedIn(),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Menu);
+export default connect(mapStateToProps, mapDispatchToProps)(LateralMenu);

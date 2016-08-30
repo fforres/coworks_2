@@ -1,12 +1,11 @@
-.menuItem {
-  margin-left: 1em;
-  margin-right: 1em;
-}
-
 .button {
   margin: 0.5em;
   display: flex;
   align-items: center;
+}
+
+.menuItem {
+  margin-left: 1em;
 }
 
 .menu {
