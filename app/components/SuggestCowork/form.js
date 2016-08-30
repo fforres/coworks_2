@@ -63,16 +63,22 @@ class SuggestCoworkForm extends Component { // eslint-disable-line react/prefer-
         filter={AutoComplete.fuzzyFilter}
         dataSourceConfig={dataSourceConfig}
         maxSearchResults={5}
+        fullWidth
       />
     );
     return (
       <div className={styles.base}>
-        <h2>Sugierenos un Cowork</h2>
-        <div className="lead"> ¿Sabes de algún lugar que nosotros no? <br /> ¿Conoces de primera mano aquel cowork del que todos deberían saber? <br /> </div>
-        <div className="lead"> Solo mándanos la información necesaria y nuestros robots se encargarán de agregarlo! </div>
+        <div
+          className={styles.text}
+        >
+          <h1>Sugiérenos un Cowork</h1>
+          <p> ¿Sabes de algún lugar que nosotros no? <br /> ¿Conoces de primera mano aquel cowork del que todos deberían saber? <br /> </p>
+          <p> Solo mándanos la información necesaria y nuestros robots se encargarán de agregarlo! </p>
+        </div>
         <form
           type="horizontal"
           onSubmit={this.handleSubmit}
+          className={styles.form}
         >
           <div>
             <Field
