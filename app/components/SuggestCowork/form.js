@@ -7,6 +7,7 @@
 import React, { PropTypes, Component } from 'react';
 import styles from './formStyles.css';
 import { Field, reduxForm } from 'redux-form/immutable';
+import { TextField, RaisedButton, AutoComplete } from 'material-ui';
 
 class SuggestCoworkForm extends Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -18,6 +19,52 @@ class SuggestCoworkForm extends Component { // eslint-disable-line react/prefer-
     console.log(e);
   }
   render() {
+    const renderCoworkName = ({ input, label, meta: { touched, error }, ...custom }) => (
+      <TextField
+        errorText={touched && error}
+        floatingLabelText={label}
+        hintText={label}
+        {...input}
+        {...custom}
+      />
+    );
+    const renderCoworkDescriptionShort = ({ input, label, meta: { touched, error }, ...custom }) => (
+      <TextField
+        errorText={touched && error}
+        floatingLabelText={label}
+        hintText={label}
+        {...input}
+        {...custom}
+      />
+    );
+    const renderCoworkDescriptionLong = ({ input, label, meta: { touched, error }, ...custom }) => (
+      <TextField
+        errorText={touched && error}
+        floatingLabelText={label}
+        hintText={label}
+        {...input}
+        {...custom}
+      />
+    );
+    const dataSource3 = [
+      { textKey: 'Some Text', valueKey: 'someFirstValue' },
+      { textKey: 'Some Text', valueKey: 'someSecondValue' },
+    ];
+    const dataSourceConfig = {
+      text: 'textKey',
+      value: 'valueKey',
+    };
+
+    const renderCountry = (
+      <AutoComplete
+        floatingLabelText="text-value data"
+        dataSource={dataSource3}
+        openOnFocus
+        filter={AutoComplete.fuzzyFilter}
+        dataSourceConfig={dataSourceConfig}
+        maxSearchResults={5}
+      />
+    );
     return (
       <div className={styles.base}>
         <h2>Sugierenos un Cowork</h2>
@@ -28,18 +75,47 @@ class SuggestCoworkForm extends Component { // eslint-disable-line react/prefer-
           onSubmit={this.handleSubmit}
         >
           <div>
-            <label htmlFor="firstName">First Name</label>
-            <Field name="firstName" component="input" type="text" />
+            <Field
+              name="name"
+              label="Nombre del Cowork"
+              component={renderCoworkName}
+              fullWidth
+              type="text"
+            />
           </div>
           <div>
-            <label htmlFor="lastName">Last Name</label>
-            <Field name="lastName" component="input" type="text" />
+            <Field
+              name="county"
+              label="Pais"
+              component={renderCoworkDescriptionLong}
+              fullWidth
+              type="text"
+            />
           </div>
           <div>
-            <label htmlFor="email">Email</label>
-            <Field name="email" component="input" type="email" />
+            <Field
+              name="shortDescription"
+              label="Descripcion Corta"
+              component={renderCoworkDescriptionShort}
+              fullWidth
+              type="text"
+            />
           </div>
-          <button type="submit">Submit</button>
+          <div>
+            <Field
+              name="longDescription"
+              label="Descripcion Larga"
+              component={renderCoworkDescriptionLong}
+              rows={2}
+              rowsMax={4}
+              fullWidth
+              type="text"
+            />
+          </div>
+          <div>
+            {renderCountry}
+          </div>
+          <RaisedButton label="Submitear" primary type="submit" />
         </form>
 
       </div>
