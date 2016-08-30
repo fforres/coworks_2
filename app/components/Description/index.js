@@ -15,7 +15,7 @@ export class Description extends React.Component { // eslint-disable-line react/
 
     return (
       <div className={styles.description}>
-        <a href={this.props.webpage} target="_blank" className={styles.titleLink}><h2>{this.props.name}</h2></a>
+        <a href={this.props.webpage} target="_blank" className={styles.titleLink}><h1>{this.props.name}</h1></a>
         <p className={styles.subTitle}>{this.props.street} {this.props.number} - {this.props.city.name}, {this.props.country.name}</p>
         <p className={styles.paragraph}>{this.props.longDescription || 'Aun no tenemos una descripción :/'}</p>
         <a href={this.props.webpage} target="_blank" className={styles.titleLink}>{this.props.webpage}</a>

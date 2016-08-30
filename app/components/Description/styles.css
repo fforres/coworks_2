@@ -15,12 +15,12 @@
 
 .paragraph {
   text-align: justify;
-  margin: 0.6rem;
+  margin: 1rem;
+  line-height: 1.5em;
 }
 
 .subTitle {
-  font-size: 0.8rem;
-  margin: 0;
+  font-size: 1.1rem;
   text-transform: capitalize;
 }
 
