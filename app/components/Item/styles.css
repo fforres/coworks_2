@@ -23,8 +23,8 @@
 
 .link {
   text-decoration: none;
-  margin: 0.6em;
-  margin-bottom: 1em;
+  padding: 1em;
+  padding-bottom: 1.2em;
   display: flex;
   flex-direction: column;
   color: rgb(0, 0, 0);
@@ -36,21 +36,21 @@
 
 .subTitle {
   position: relative;
-  height: 4.5em;
+  height: 3.3em;
   overflow: hidden;
 }
 
 .subTitleText {
-  margin-top: 0.9rem;
+  margin-top: 0.6rem;
   font-size: 0.85rem;
 }
 
 .fadeOut {
   background: linear-gradient(rgba(0, 0, 0, 0), white);
   bottom: 0;
-  height: 1.5em;
-  width: 100%;
+  height: 1.6em;
   position: absolute;
+  width: 100%;
 }
 
 .address {
@@ -58,9 +58,8 @@
 }
 
 .actions {
-  margin-top: 0.8rem;
-
-  /* display: none; */
+  margin-top: 0.5rem;
+  font-size: 0.8em;
 }
 
 .actionButtons {
