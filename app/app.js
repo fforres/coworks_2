@@ -6,6 +6,11 @@
  */
 import 'babel-polyfill';
 
+
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 /* eslint-disable import/no-unresolved */
 // Load the manifest.json file and the .htaccess file
 import '!file?name=[name].[ext]!./manifest.json';
@@ -29,6 +34,9 @@ import { translationMessages } from './i18n';
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
 import 'sanitize.css/sanitize.css';
 
+// Importing Roboto FontFace
+import 'roboto-fontface/css/roboto/roboto-fontface.css';
+
 // Sync history and store, as the react-router-redux reducer
 // is under the non-default key ("routing"), selectLocationState
 // must be provided for resolving how to retrieve the "route" in the state
@@ -37,6 +45,10 @@ import { selectLocationState } from 'containers/App/selectors';
 // Set up the router, wrapping all Routes in the App component
 import App from 'containers/App';
 import createRoutes from './routes';
+
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 
 // Install ServiceWorker and AppCache in the end since
 // it's not most important operation and if main code fails,
@@ -60,19 +72,21 @@ configureStore(initialState, browserHistory, (store) => {
 
   const render = (translatedMessages) => {
     ReactDOM.render(
-      <Provider store={store}>
-        <LanguageProvider messages={translatedMessages}>
-          <Router
-            history={history}
-            routes={rootRoute}
-            render={
-              // Scroll to top when going to a new page, imitating default browser
-              // behaviour
-              applyRouterMiddleware(useScroll())
-            }
-          />
-        </LanguageProvider>
-      </Provider>,
+      <MuiThemeProvider>
+        <Provider store={store}>
+          <LanguageProvider messages={translatedMessages}>
+            <Router
+              history={history}
+              routes={rootRoute}
+              render={
+                // Scroll to top when going to a new page, imitating default browser
+                // behaviour
+                applyRouterMiddleware(useScroll())
+              }
+            />
+          </LanguageProvider>
+        </Provider>
+      </MuiThemeProvider>,
       document.getElementById('app')
     );
   };

@@ -10,9 +10,11 @@ import { push } from 'react-router-redux';
 import { startLogout, loginAuth0 } from 'utils/auth/actions';
 import { createStructuredSelector } from 'reselect';
 import { selectLoggedIn } from 'utils/auth/selectors';
-import { Icon } from 'react-fa';
+import { RaisedButton, MenuItem, IconMenu } from 'material-ui';
+// import styles from './styles.css';
+import IconButton from 'material-ui/IconButton/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
-import styles from './styles.css';
 
 export class Menu extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -27,21 +29,34 @@ export class Menu extends React.Component { // eslint-disable-line react/prefer-
     this.props.startLogout();
   }
   render() {
-    let sessionData = (<li className={[styles.link]} onClick={this.toLogin} > Login </li>);
-    if (this.props.loggedIn) {
-      sessionData = (<li className={[styles.link]} onClick={this.doLogout} > Logout </li>);
-    }
+    // let sessionData = (<li className={[styles.link]} onClick={this.toLogin} > Login </li>);
+    // if (this.props.loggedIn) {
+    //   sessionData = (<li className={[styles.link]} onClick={this.doLogout} > Logout </li>);
+    // }
     return (
-      <div className={styles.textWrapper}>
-        <button
+      <div>
+        <RaisedButton
+          label="Sugiere un Cowork"
           onClick={(e) => {
             e.preventDefault();
             this.props.changeRoute('/suggest_cowork');
           }}
+          primary
+        />
+        <IconMenu
+          iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+          anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+          targetOrigin={{ horizontal: 'right', vertical: 'top' }}
         >
-          Sugiere un Cowork
-        </button>
-        <a
+          <MenuItem primaryText="Refresh" />
+          <MenuItem primaryText="Send feedback" />
+          <MenuItem primaryText="Settings" />
+          <MenuItem primaryText="Help" />
+          <MenuItem primaryText="Sign out" />
+        </IconMenu>
+
+
+        {/* <a
           className={[styles.menu, styles.menuItem].join(' ')}
           onClick={(e) => {
             e.preventDefault();
@@ -67,7 +82,7 @@ export class Menu extends React.Component { // eslint-disable-line react/prefer-
               </ul>
             </div>
           </div>
-        </a>
+        </a> */}
       </div>
     );
   }

@@ -7,7 +7,6 @@
 import React, { PropTypes } from 'react';
 import SearchBar from '../SearchBar';
 import styles from './styles.css';
-import { Icon } from 'react-fa';
 
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
@@ -25,7 +24,7 @@ class TopBar extends React.Component { // eslint-disable-line react/prefer-state
             this.props.changeRoute('/');
           }}
           className={styles.button}
-        > <Icon name="home" className={styles.buttonIcon} /> Coworks</button>
+        > Coworks</button>
         <SearchBar getCoworks={this.props.getCoworks} />
         <Menu />
       </div>

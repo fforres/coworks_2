@@ -10,7 +10,6 @@ import styles from './styles.css';
 
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { Icon } from 'react-fa';
 
 class Item extends React.Component { // eslint-disable-line react/prefer-stateless-function
   itemClicked(nombre) {
@@ -41,7 +40,7 @@ class Item extends React.Component { // eslint-disable-line react/prefer-statele
           </div>
           <div className={styles.actions}>
             <span>
-              0 <Icon name="heart-o" style={{ color: 'red' }} />
+              0
             </span>
           </div>
         </a>
