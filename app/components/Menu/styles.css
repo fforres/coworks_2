@@ -5,16 +5,7 @@
 }
 
 .menuItem {
-  margin-left: 2em;
-}
-
-.menu {
-  position: relative;
-  display: flex;
-}
-
-.menu:hover {
-  cursor: pointer;
+  margin-left: 3em;
 }
 
 .textWrapper {

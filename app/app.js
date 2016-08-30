@@ -31,9 +31,6 @@ import { fromJS } from 'immutable';
 // Import i18n messages
 import { translationMessages } from './i18n';
 
-// Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
-import 'sanitize.css/sanitize.css';
-
 // Importing Roboto FontFace
 import 'roboto-fontface/css/roboto/roboto-fontface.css';
 

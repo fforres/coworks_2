@@ -5,7 +5,12 @@
 }
 
 .searchInput {
-  outline: none;
+  border: none;
   text-align: center;
   width: 100%;
+  font-size: 1em;
+}
+
+.searchInput:focus {
+  outline: none;
 }

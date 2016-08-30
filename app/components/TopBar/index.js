@@ -12,19 +12,23 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
 import Menu from 'components/Menu';
+import IconButton from 'material-ui/IconButton';
+import ActionHome from 'material-ui/svg-icons/action/home';
 
 class TopBar extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div className={styles.topBar}>
-        <button
-          href="#"
+        <IconButton
+          iconStyle={styles.mediumIcon}
+          style={styles.medium}
           onClick={(e) => {
             e.preventDefault();
             this.props.changeRoute('/');
           }}
-          className={styles.button}
-        > Coworks</button>
+        >
+          <ActionHome />
+        </IconButton>
         <SearchBar getCoworks={this.props.getCoworks} />
         <Menu />
       </div>
