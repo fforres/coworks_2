@@ -36,7 +36,7 @@ export function* getCoworkByKey() {
       `)
       .then((data) => data.json())
       .then((data) => data.data)
-      .catch(console.error));
+      .catch(console.error)); // eslint-disable-line no-console
       yield put(coworkLoaded(cowork.coworkByName));
     }
   } catch (err) {
@@ -45,7 +45,7 @@ export function* getCoworkByKey() {
 }
 
 export function* findCoworkByNameWatcher() {
-  while (true) {
+  while (true) { // eslint-disable-line no-constant-condition
     // TODO: Ask if current state 'Loading' is true,;
     const type = yield take(GET_COWORK_BY_KEY);
     const prevTask = queryState[type];

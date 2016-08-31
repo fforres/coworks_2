@@ -52,5 +52,5 @@ export default function configureStore(initialState = {}, history, callback) {
   store.asyncReducers = {};
   loader(store).then(() => {
     callback(store);
-  }).catch(console.error);
+  }).catch(console.error); // eslint-disable-line no-console
 }

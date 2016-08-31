@@ -16,7 +16,6 @@ class SuggestCoworkForm extends Component { // eslint-disable-line react/prefer-
   }
   handleSubmit(e) {
     e.preventDefault();
-    console.log(e);
   }
   render() {
     const renderCoworkName = ({ input, label, meta: { touched, error }, ...custom }) => (
@@ -37,7 +36,7 @@ class SuggestCoworkForm extends Component { // eslint-disable-line react/prefer-
         {...custom}
       />
     );
-    const renderCoworkDescriptionLong = ({ input, label, meta: { touched, error }, ...custom }) => (
+    const renderCoworkURL = ({ input, label, meta: { touched, error }, ...custom }) => (
       <TextField
         errorText={touched && error}
         floatingLabelText={label}
@@ -47,17 +46,37 @@ class SuggestCoworkForm extends Component { // eslint-disable-line react/prefer-
       />
     );
     const dataSource3 = [
-      { textKey: 'Some Text', valueKey: 'someFirstValue' },
-      { textKey: 'Some Text', valueKey: 'someSecondValue' },
+      { textKey: 'Some Text 1', valueKey: 'someFirstValue' },
+      { textKey: 'Some Text 2', valueKey: 'someSecondValue' },
     ];
     const dataSourceConfig = {
       text: 'textKey',
       value: 'valueKey',
     };
 
-    const renderCountry = (
+    const country = ({ input, label, meta: { touched, error }, ...custom }) => (
       <AutoComplete
-        floatingLabelText="text-value data"
+        errorText={touched && error}
+        floatingLabelText={label}
+        openOnFocus
+        hintText={label}
+        filter={AutoComplete.fuzzyFilter}
+        dataSource={dataSource3}
+        dataSourceConfig={dataSourceConfig}
+        // onUpdateInput={(value) => {
+        //   console.log(value);
+        // }}
+        onNewRequest={(searchText, dataSource) => {
+          input.onChange(dataSource.valueKey);
+        }}
+        {...input}
+        {...custom}
+      />
+    );
+
+    const renderCity = (
+      <AutoComplete
+        floatingLabelText="Ciudad"
         dataSource={dataSource3}
         openOnFocus
         filter={AutoComplete.fuzzyFilter}
@@ -67,64 +86,54 @@ class SuggestCoworkForm extends Component { // eslint-disable-line react/prefer-
       />
     );
     return (
-      <div className={styles.base}>
-        <div
-          className={styles.text}
-        >
-          <h1>Sugiérenos un Cowork</h1>
-          <p> ¿Sabes de algún lugar que nosotros no? <br /> ¿Conoces de primera mano aquel cowork del que todos deberían saber? <br /> </p>
-          <p> Solo mándanos la información necesaria y nuestros robots se encargarán de agregarlo! </p>
+      <form
+        type="horizontal"
+        onSubmit={this.handleSubmit}
+        className={styles.form}
+        autoComplete="off"
+      >
+        <div>
+          <Field
+            name="name"
+            label="Nombre del Cowork"
+            component={renderCoworkName}
+            fullWidth
+            type="text"
+          />
         </div>
-        <form
-          type="horizontal"
-          onSubmit={this.handleSubmit}
-          className={styles.form}
-        >
-          <div>
-            <Field
-              name="name"
-              label="Nombre del Cowork"
-              component={renderCoworkName}
-              fullWidth
-              type="text"
-            />
-          </div>
-          <div>
-            <Field
-              name="county"
-              label="Pais"
-              component={renderCoworkDescriptionLong}
-              fullWidth
-              type="text"
-            />
-          </div>
-          <div>
-            <Field
-              name="shortDescription"
-              label="Descripcion Corta"
-              component={renderCoworkDescriptionShort}
-              fullWidth
-              type="text"
-            />
-          </div>
-          <div>
-            <Field
-              name="longDescription"
-              label="Descripcion Larga"
-              component={renderCoworkDescriptionLong}
-              rows={2}
-              rowsMax={4}
-              fullWidth
-              type="text"
-            />
-          </div>
-          <div>
-            {renderCountry}
-          </div>
-          <RaisedButton label="Submitear" primary type="submit" />
-        </form>
-
-      </div>
+        <div>
+          <Field
+            name="myField"
+            label="Country"
+            fullWidth
+            component={country}
+          />
+        </div>
+        <div>
+          {renderCity}
+        </div>
+        <div>
+          <Field
+            name="shortDescription"
+            label="Descripcion"
+            component={renderCoworkDescriptionShort}
+            fullWidth
+            type="text"
+          />
+        </div>
+        <div>
+          <Field
+            name="url"
+            label="Sitio Web"
+            component={renderCoworkURL}
+            fullWidth
+            type="text"
+          />
+        </div>
+        <div className={styles.buttonArea}>
+          <RaisedButton label="Sugerir" primary type="submit" />
+        </div>
+      </form>
     );
   }
 }

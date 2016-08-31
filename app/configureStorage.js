@@ -8,7 +8,7 @@ const updateState = (state, storageStateJson) => {
   try {
     state = state.mergeDeep(fromJS(storageStateJson)); // eslint-disable-line no-param-reassign
   } catch (error) {
-    console.error(error);
+    console.error(error); // eslint-disable-line no-console
   }
   return state;
 };

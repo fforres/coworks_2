@@ -72,8 +72,8 @@ module.exports = (options) => ({
     function donePlugin() {
       this.plugin('done', (stats) => {
         if (stats.compilation.errors && stats.compilation.errors.length && process.argv.indexOf('--watch') === -1) {
-          console.log('----ERROR----');
-          console.log(stats.compilation.errors);
+          console.log('----ERROR----'); // eslint-disable-line no-console
+          console.log(stats.compilation.errors); // eslint-disable-line no-console
           process.exit(1);
         }
       });

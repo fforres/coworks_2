@@ -27,11 +27,11 @@ export function* getCoworks() {
       `)
       .then((data) => data.json())
       .then((data) => data.data)
-      .catch(console.error)
+      .catch(console.error)// eslint-disable-line no-console
     );
     yield put(coworksLoaded(coworksGraphQL.coworkList));
   } catch (err) {
-    console.error(err);
+    console.error(err);// eslint-disable-line no-console
     yield put(coworksLoadingError(true));
   }
 }
